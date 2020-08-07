@@ -1,0 +1,16 @@
+# Default make file
+PKG_CPPFLAGS=-std=c++17 -I. -I/Users/mariana/Development/jupyter-ecosystem/mamba/include
+PKG_LIBS= -lmamba_lib
+
+# Include all C++ files in src/:
+SOURCES=RcppExports.cpp caramba.cpp
+
+# Obtain the object files
+OBJECTS=$(SOURCES:.cpp=.o) 
+
+# Make the shared object
+all: $(SHLIB)
+
+# Provide recipe to remove all objects
+clean:
+	@rm -f $(OBJECTS)

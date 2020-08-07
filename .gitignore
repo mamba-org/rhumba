@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+src/Makevars
+config.log
+config.status
+src/RcppExports.cpp
+R/.RData
+R/.Rhistory
+R/RcppExports.R
