@@ -50,9 +50,9 @@ And you're ready to use Mamba!
 
 You can use Mamba as your new package manager.
 
-If you'd like, set the channel you prefer to use, `default` is the default one:
+Set the channel you'd rather use:
 
-`mamba::set_channel("conda-forge")`
+`mamba::set_channel("conda-forge", "default")`
 
 Try installing something:
 

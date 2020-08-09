@@ -35,12 +35,7 @@ using namespace mamba;
 
 // [[Rcpp::plugins(cpp14)]]
 
-std::string env_name(const fs::path& prefix);
-fs::path locate_prefix_by_name(const std::string& name);
-
-std::string MAMBA_CONDA_VERSION = "3.8.0";
-std::string MAMBA_CURRENT_COMMAND = "mamba";
-
+/* Beginning of Context */
 fs::path target_prefix = std::getenv("CONDA_PREFIX") ? std::getenv("CONDA_PREFIX") : "";;
 // Need to prevent circular imports here (otherwise using env::get())
 fs::path root_prefix = std::getenv("MAMBA_ROOT_PREFIX") ? std::getenv("MAMBA_ROOT_PREFIX") : "";
@@ -79,23 +74,9 @@ int MAMBA_RETRY_TIMEOUT = 2; // seconds
 int MAMBA_RETRY_BACKOFF = 3; // retry_timeout * retry_backoff
 int MAMBA_MAX_RETRIES = 3;  // max number of retries
 
-std::string MAMBA_ENV_PROMPT = "({default_env}) ";
-
-// ssl verify can be either an empty string (regular SSL verification),
-// the string "<false>" to indicate no SSL verification, or a path to 
-// a directory with cert files, or a cert file.
-std::string MAMBA_SSL_VERIFY = "";
-
 // Conda compat
 bool const MAMBA_ADD_PIP_AS_PYTHON_DEPENDENCY = true;
-
-static struct {
-    bool hook;
-    std::string shell_type;
-    std::string action;
-    std::string prefix = "base";
-    bool stack;
-} shell_options;
+/* End of Context */
 
 static struct {
     std::vector<std::string> specs;
@@ -108,15 +89,6 @@ static struct {
     bool ssl_verify = true;
     std::string cacert_path;
 } network_options;
-
-static struct {
-    int verbosity = 0;
-    bool always_yes = false;
-    bool quiet = false;
-    bool json = false;
-    bool offline = false;
-    bool dry_run = false;
-} global_options;
 
 // [[Rcpp::export]]
 void set_conda_version(std::string conda_version)
@@ -139,7 +111,10 @@ void set_root_prefix(std::string root_prefix)
 // [[Rcpp::export]]
 void set_channels(std::vector<std::string> channels)
 {
-    mamba::Context::instance().channels = channels;
+    for (std::string channel : channels)
+    {
+        mamba::Context::instance().channels.push_back(channel);
+    }
 }
 
 // [[Rcpp::export]]
