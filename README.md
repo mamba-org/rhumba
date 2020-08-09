@@ -48,7 +48,13 @@ And you're ready to use Mamba!
 
 ## Use
 
-You can use Mamba as your new package manager. Try installing something:
+You can use Mamba as your new package manager.
+
+If you'd like, set the channel you prefer to use, `default` is the default one:
+
+`mamba::set_channel("conda-forge")`
+
+Try installing something:
 
 `mamba::install("xtensor")`
 
@@ -57,8 +63,7 @@ You can do that by calling:
 
 `mamba::set_root_prefix(/path/to/prefix)`
 
-Or either set the `MAMBA_ROOT_PREFIX` environment variable, or use  micromamba
-shell init ... to initialize your shell, then restart or source the contents of the shell init script.
+Or use  micromamba shell init ... to initialize your shell, then restart.
 
 ## License
 
