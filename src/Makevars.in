@@ -1,6 +1,7 @@
 # Default make file
-PKG_CPPFLAGS=-std=c++17 -I. -I/Users/mariana/Development/jupyter-ecosystem/mamba/include
-PKG_LIBS= -lmamba_lib
+PKG_CPPFLAGS=-std=c++17
+
+PKG_LIBS= -lmamba
 
 # Include all C++ files in src/:
 SOURCES=RcppExports.cpp caramba.cpp

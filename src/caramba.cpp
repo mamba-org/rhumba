@@ -7,18 +7,17 @@
 
 #include <csignal>
 
-#include "output.hpp"
-#include "util.hpp"
-#include "context.hpp"
-#include "thirdparty/termcolor.hpp"
-#include "thread_utils.hpp"
+#include "mamba/output.hpp"
+#include "mamba/util.hpp"
+#include "mamba/context.hpp"
+#include "mamba/thread_utils.hpp"
 
-#include "channel.hpp"
-#include "subdirdata.hpp"
-#include "pool.hpp"
-#include "solver.hpp"
-#include "package_cache.hpp"
-#include "transaction.hpp"
+#include "mamba/channel.hpp"
+#include "mamba/subdirdata.hpp"
+#include "mamba/pool.hpp"
+#include "mamba/solver.hpp"
+#include "mamba/package_cache.hpp"
+#include "mamba/transaction.hpp"
 
 const char banner[] = R"MAMBARAW(
                                            __
