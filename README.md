@@ -1,20 +1,8 @@
 # ¡Caramba! R bindings to Mamba! 🐍⬛️
 
-⚠️!ACHTUNG!⚠️
+In early stages of development, but pretty usable.
 
-Currently under development. You need to download your own version of mamba, add the following on th `Cmakelists.txt` file and compile by yourself.
-
-```
-+# HACKS!
-+add_library(mamba_lib SHARED ${MAMBA_SOURCES})
-+install(TARGETS mamba_lib)
-```
-
-Once it's done, include the path for mamba libs in your `src/Makevars.in`.
-
-```
--I/yourpathto/mamba/include
-```
+⚠️ACHTUNG!⚠️ It's necessary to build mamba from source with the master branch to use it.
 
 ## Installation
 
@@ -52,7 +40,7 @@ You can use Mamba as your new package manager.
 
 Set the channel you'd rather use:
 
-`mamba::set_channel("conda-forge", "default")`
+`mamba::set_channels(c("conda-forge", "default"))`
 
 Try installing something:
 
