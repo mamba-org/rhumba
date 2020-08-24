@@ -2,7 +2,8 @@ Package: mamba
 Type: Package
 Title: Mamba
 Version: 0.0.0.9000
-Authors@R: person("Wolf Vollprecht", "Mariana Meireles", email = "mariana@psychonautgirl.space", role = c("aut", "cre"))
+Author: c(("Mariana Meireles", email = "mariana@psychonautgirl.space", role = c("aut", "cre")), ("Wolf Vollprecht", email = "wolf.vollprecht@quantstack.net", role = c("cre")))
+Maintainer: Mariana Meireles, email = <mariana@psychonautgirl.space>
 Description: Mamba is a reimplementation of the conda package manager in C++.
 BugReports:
 Depends: R (>= 3.4.0)
