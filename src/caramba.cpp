@@ -185,25 +185,25 @@ void print_context()
 {
     for (auto& channel : Context::instance().channels)
     {
-        std::cout << "Channel: " << channel << std::endl;
+        Rcpp::Rcout << "Channel: " << channel << std::endl;
     }
-    std::cout << "Root prefix: " << mamba::Context::instance().root_prefix << "\n";
-    std::cout << "Target prefix: " << mamba::Context::instance().target_prefix << "\n";
-    std::cout << "Use index cache: " << Context::instance().use_index_cache << "\n";
-    std::cout << "Is offline: " << Context::instance().offline << "\n";
-    std::cout << "Verbosity level: " << Context::instance().verbosity << "\n";
-    std::cout << "Is quiet: " << Context::instance().quiet << "\n";
-    std::cout << "Is json: " << Context::instance().json << "\n";
-    std::cout << "Auto activate base: " << Context::instance().auto_activate_base << "\n";
-    std::cout << "Is dev: " << Context::instance().dev << "\n";
-    std::cout << "Is on CI: " << Context::instance().on_ci << "\n";
-    std::cout << "Is no no progress bars: " << Context::instance().no_progress_bars << "\n";
-    std::cout << "Is dry run: " << Context::instance().dry_run << "\n";
-    std::cout << "Always yes: " << Context::instance().quiet << "\n";
-    std::cout << "Keep temporary files: " << Context::instance().keep_temp_files << "\n";
-    std::cout << "Keep temporary directories: " << Context::instance().keep_temp_directories << "\n";
-    std::cout << "Change PS1: " << Context::instance().change_ps1 << "\n";
-    std::cout << "Add pip as python dependency: " << Context::instance().add_pip_as_python_dependency << "\n";
+    Rcpp::Rcout << "Root prefix: " << mamba::Context::instance().root_prefix << "\n";
+    Rcpp::Rcout << "Target prefix: " << mamba::Context::instance().target_prefix << "\n";
+    Rcpp::Rcout << "Use index cache: " << Context::instance().use_index_cache << "\n";
+    Rcpp::Rcout << "Is offline: " << Context::instance().offline << "\n";
+    Rcpp::Rcout << "Verbosity level: " << Context::instance().verbosity << "\n";
+    Rcpp::Rcout << "Is quiet: " << Context::instance().quiet << "\n";
+    Rcpp::Rcout << "Is json: " << Context::instance().json << "\n";
+    Rcpp::Rcout << "Auto activate base: " << Context::instance().auto_activate_base << "\n";
+    Rcpp::Rcout << "Is dev: " << Context::instance().dev << "\n";
+    Rcpp::Rcout << "Is on CI: " << Context::instance().on_ci << "\n";
+    Rcpp::Rcout << "Is no no progress bars: " << Context::instance().no_progress_bars << "\n";
+    Rcpp::Rcout << "Is dry run: " << Context::instance().dry_run << "\n";
+    Rcpp::Rcout << "Always yes: " << Context::instance().quiet << "\n";
+    Rcpp::Rcout << "Keep temporary files: " << Context::instance().keep_temp_files << "\n";
+    Rcpp::Rcout << "Keep temporary directories: " << Context::instance().keep_temp_directories << "\n";
+    Rcpp::Rcout << "Change PS1: " << Context::instance().change_ps1 << "\n";
+    Rcpp::Rcout << "Add pip as python dependency: " << Context::instance().add_pip_as_python_dependency << "\n";
 }
 
 void set_global_options(Context& ctx)
@@ -265,7 +265,7 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
 
     if (ctx.root_prefix.empty())
     {
-        std::cout << "You have not set a $MAMBA_ROOT_PREFIX.\nEither set the MAMBA_ROOT_PREFIX \
+        Rcpp::Rcout << "You have not set a $MAMBA_ROOT_PREFIX.\nEither set the MAMBA_ROOT_PREFIX \
         environment variable, or use `mamba::set_root_prefix` or use\n  micromamba shell init ... \
         \nto initialize your shell, then restart or source the contents of the shell init script.\n";
         exit(1);
@@ -273,13 +273,13 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
 
     if (ctx.target_prefix.empty())
     {
-        std::cout << "No active target prefix.\n\nRun $ micromamba activate \
+        Rcpp::Rcout << "No active target prefix.\n\nRun $ micromamba activate \
         <PATH_TO_MY_ENV>\nto activate an environment.\n";
         exit(1);
     }
     if (!fs::exists(ctx.target_prefix) && create_env == false)
     {
-        std::cout << "Prefix does not exist\n";
+        Rcpp::Rcout << "Prefix does not exist\n";
         exit(1);
     }
 
@@ -290,7 +290,7 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
     }
     catch (...)
     {
-        std::cout << "Could not create `pkgs/cache/` dirs" << std::endl;
+        Rcpp::Rcout << "Could not create `pkgs/cache/` dirs" << std::endl;
         exit(1);
     }
 
@@ -346,7 +346,6 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
     std::vector<MRepo*> repo_ptrs;
     for (auto& r : repos) { repo_ptrs.push_back(&r); }
 
-    std::cout << std::endl;
     bool yes = trans.prompt(ctx.root_prefix / "pkgs", repo_ptrs);
     if (!yes) exit(0);
 
