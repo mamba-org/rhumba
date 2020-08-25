@@ -4,7 +4,7 @@ In early stages of development, but pretty usable.
 
 ⚠️ACHTUNG!⚠️ It's necessary to build mamba from source with the master branch to use it.
 
-## Installation
+## Installation from source
 
 ### Requirements:
 
@@ -13,7 +13,19 @@ First make sure to have the following R packages:
 - Rcpp
 - Devtools
 
+And the softwares:
+
+- autoconf
+- automake
+- libtool
+
 #### Windows, Mac and Linux:
+
+Generate the `configure` file:
+
+```
+autoconf
+```
 
 devtools::install_github("hadley/devtools")
 
