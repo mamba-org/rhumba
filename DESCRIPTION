@@ -2,14 +2,20 @@ Package: rhumba
 Type: Package
 Title: Rhumba
 Version: 0.0.0.9000
-Author: c(("Mariana Meireles", email = "mariana@psychonautgirl.space", role = c("aut", "cre")), ("Wolf Vollprecht", email = "wolf.vollprecht@quantstack.net", role = c("cre")))
+Author: "Mariana Meireles, email = <mariana@psychonautgirl.space>"
+Authors@R: c(person("Mariana Meireles",
+            email = "mariana@psychonautgirl.space",
+            role = c("aut", "cre")),
+            person("Wolf Vollprecht",
+            email = "wolf.vollprecht@quantstack.net",
+            role = c("cre")))
 Maintainer: Mariana Meireles, email = <mariana@psychonautgirl.space>
-Description: Rhumba is the R bidings from Mamba to R.
-BugReports:
+Description: These are the R bidings from Mamba to R, allowing users to install compiled packages in their environments.
+BugReports: https://gitter.im/QuantStack/Lobby
 Depends: R (>= 3.4.0)
 Imports: Rcpp (>= 0.11.5)
 LinkingTo: Rcpp
-License: BSD 3
+License: LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
