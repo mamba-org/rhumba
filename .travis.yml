@@ -1,10 +1,10 @@
 install:
     # Define the version of micromamba to download
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+        wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba;
       elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         MICROMAMBA_OS=$MICROMAMBA_OSX;
-        wget -qO- https://micromamba.snakepit.net/api/micromamba/osx-64/latest | tar -xvj bin/micromamba
+        wget -qO- https://micromamba.snakepit.net/api/micromamba/osx-64/latest | tar -xvj bin/micromamba;
       fi
     - ./micromamba shell init -s bash -p ~/micromamba
     - micromamba activate
