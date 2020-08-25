@@ -1,10 +1,10 @@
-Package: mamba
+Package: rhumba
 Type: Package
-Title: Mamba
+Title: Rhumba
 Version: 0.0.0.9000
 Author: c(("Mariana Meireles", email = "mariana@psychonautgirl.space", role = c("aut", "cre")), ("Wolf Vollprecht", email = "wolf.vollprecht@quantstack.net", role = c("cre")))
 Maintainer: Mariana Meireles, email = <mariana@psychonautgirl.space>
-Description: Mamba is a reimplementation of the conda package manager in C++.
+Description: Rhumba is the R bidings from Mamba to R.
 BugReports:
 Depends: R (>= 3.4.0)
 Imports: Rcpp (>= 0.11.5)

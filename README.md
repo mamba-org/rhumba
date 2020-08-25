@@ -52,16 +52,16 @@ You can use Mamba as your new package manager.
 
 Set the channel you'd rather use:
 
-`mamba::set_channels(c("conda-forge", "default"))`
+`rhumba::set_channels(c("conda-forge", "default"))`
 
 Try installing something:
 
-`mamba::install("xtensor")`
+`rhumba::install("xtensor")`
 
 You might need to setup your `MAMBA_ROOT_PREFIX` if you've never done it before.
 You can do that by calling:
 
-`mamba::set_root_prefix(/path/to/prefix)`
+`rhumba::set_root_prefix(/path/to/prefix)`
 
 Or use  micromamba shell init ... to initialize your shell, then restart.
 
