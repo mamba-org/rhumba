@@ -11,5 +11,6 @@ r_packages:
   - Rcpp
 
 script:
+  - autoconf
   - R CMD build .
-  - R CMD check mamba_0.0.0.9000.tar.gz --as-cran --no-manual
+  - R CMD check *.tar.gzm --as-cran --no-manual
