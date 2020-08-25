@@ -7,3 +7,9 @@ r:
   - release
   - devel
 
+r_packages:
+  - Rcpp
+
+script:
+  - R CMD build .
+  - R CMD check *tar.gz --as-cran --no-manual
