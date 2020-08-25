@@ -13,4 +13,4 @@ r_packages:
 script:
   - autoconf
   - R CMD build .
-  - R CMD check *.tar.gzm --as-cran --no-manual
+  - R CMD check rhumba_0.0.0.9000.tar.gz --as-cran --no-manual
