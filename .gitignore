@@ -8,3 +8,4 @@ src/RcppExports.cpp
 R/.RData
 R/.Rhistory
 R/RcppExports.R
+autom4te.cache/
