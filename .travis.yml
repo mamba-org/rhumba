@@ -6,9 +6,9 @@ install:
         MICROMAMBA_OS=$MICROMAMBA_OSX;
         wget -qO- https://micromamba.snakepit.net/api/micromamba/osx-64/latest | tar -xvj bin/micromamba;
       fi
-    - ./micromamba shell init -s bash -p ~/micromamba
-    - micromamba activate
-    - micromamba install mamba -c conda-forge
+    ./micromamba shell init -s bash -p ~/micromamba
+    micromamba activate
+    micromamba install mamba -c conda-forge
 
 language: r
 cache: packages
