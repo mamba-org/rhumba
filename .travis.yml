@@ -14,4 +14,4 @@ script:
   - set +e
   - R CMD build .
   - R CMD check rhumba_0.0.0.9000.tar.gz --as-cran --no-manual
-  - cat /home/travis/build/marimeireles/caramba/rhumba.Rcheck/00check.log
+  - cat /home/travis/build/marimeireles/caramba/rhumba.Rcheck/00install.out
