@@ -65,6 +65,15 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// list
+void list();
+RcppExport SEXP _rhumba_list() {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    list();
+    return R_NilValue;
+END_RCPP
+}
 // install
 void install(const std::vector<std::string>& specs, bool create_env);
 RcppExport SEXP _rhumba_install(SEXP specsSEXP, SEXP create_envSEXP) {
@@ -84,6 +93,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rhumba_set_channels", (DL_FUNC) &_rhumba_set_channels, 1},
     {"_rhumba_set_opt", (DL_FUNC) &_rhumba_set_opt, 2},
     {"_rhumba_print_context", (DL_FUNC) &_rhumba_print_context, 0},
+    {"_rhumba_list", (DL_FUNC) &_rhumba_list, 0},
     {"_rhumba_install", (DL_FUNC) &_rhumba_install, 2},
     {NULL, NULL, 0}
 };
