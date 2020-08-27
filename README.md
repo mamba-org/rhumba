@@ -4,6 +4,14 @@
 
 In early stages of development, but pretty usable.
 
+## Installation
+
+With either mamba or conda:
+
+`mamba install rhumba`
+
+`conda install rhumba`
+
 ## Use
 
 You can use Mamba as your new package manager.
