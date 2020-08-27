@@ -71,7 +71,7 @@ bool const MAMBA_CHANGE_PS1 = true;
 int MAMBA_CONNECT_TIMEOUT_SECS = 10;
 int MAMBA_RETRY_TIMEOUT = 2; // seconds
 int MAMBA_RETRY_BACKOFF = 3; // retry_timeout * retry_backoff
-int MAMBA_MAX_RETRIES = 3;  // max number of retries
+int MAMBA_MAX_RETRIES = 3; // max number of retries
 
 // Conda compat
 bool const MAMBA_ADD_PIP_AS_PYTHON_DEPENDENCY = true;
@@ -88,6 +88,16 @@ static struct {
     bool ssl_verify = true;
     std::string cacert_path;
 } network_options;
+
+struct formatted_pkg
+{
+    std::string name, version, build, channel;
+};
+
+bool compareAlphabetically(const formatted_pkg& a, const formatted_pkg& b)
+{
+    return a.name < b.name;
+}
 
 // [[Rcpp::export]]
 void set_conda_version(std::string conda_version)
@@ -357,6 +367,55 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
     }
 
     trans.execute(prefix_data, ctx.root_prefix / "pkgs");
+}
+
+// [[Rcpp::export]]
+void list()
+{
+    auto& ctx = Context::instance();
+    PrefixData prefix_data(ctx.target_prefix);
+    prefix_data.load();
+
+    Rcpp::Rcout << "List of packages in environment: " << ctx.target_prefix << std::endl;
+
+    formatted_pkg formatted_pkgs;
+
+    std::vector<formatted_pkg> packages;
+
+    // order list of packages from prefix_data by alphabetical order
+    for (auto package : prefix_data.m_package_records)
+    {
+        formatted_pkgs.name = package.second.name;
+        formatted_pkgs.version = package.second.version;
+        formatted_pkgs.build = package.second.build_string;
+        if (package.second.channel.find("https://repo.anaconda.com/pkgs/") == 0)
+        {
+            formatted_pkgs.channel = "";
+        }
+        else
+        {
+            Channel& channel = make_channel(package.second.url);
+            formatted_pkgs.channel = channel.name();
+        }
+        packages.push_back(formatted_pkgs);
+    }
+
+    std::sort(packages.begin(), packages.end(), compareAlphabetically);
+
+    // format and print table
+    printers::Table t({ "Name", "Version", "Build", "Channel" });
+    t.set_alignment({ printers::alignment::left,
+                      printers::alignment::left,
+                      printers::alignment::left,
+                      printers::alignment::left });
+    t.set_padding({ 2, 2, 2, 2 });
+
+    for (auto p : packages)
+    {
+        t.add_row({ p.name, p.version, p.build, p.channel });
+    }
+
+    t.print(Rcpp::Rcout);
 }
 
 // [[Rcpp::export]]
