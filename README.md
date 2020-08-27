@@ -1,8 +1,28 @@
-# ¡Caramba! R bindings to Mamba! 🐍⬛️
+# Rhumba 🐍
+
+¡Caramba! R bindings to Mamba!
 
 In early stages of development, but pretty usable.
 
-⚠️ACHTUNG!⚠️ It's necessary to build mamba from source with the master branch to use it.
+## Use
+
+You can use Mamba as your new package manager.
+
+Set the channel you'd rather use:
+
+`rhumba::set_channels(c("conda-forge", "default"))`
+
+Try installing something:
+
+`rhumba::install("xtensor")`
+
+You might need to setup your `MAMBA_ROOT_PREFIX` if you've never done it before.
+You can do that by calling:
+
+`rhumba::set_root_prefix(/path/to/prefix)`
+
+Or use  micromamba shell init ... to initialize your shell, then restart. Check 
+the use of micromamba [here](https://gist.github.com/wolfv/fe1ea521979973ab1d016d95a589dcde).
 
 ## Installation from source
 
@@ -27,7 +47,7 @@ Generate the `configure` file:
 autoconf
 ```
 
-devtools::install_github("hadley/devtools")
+Install packages:
 
 ```
 install.packages("Rcpp")
@@ -45,25 +65,6 @@ Then:
 `devtools::install()`
 
 And you're ready to use Mamba!
-
-## Use
-
-You can use Mamba as your new package manager.
-
-Set the channel you'd rather use:
-
-`rhumba::set_channels(c("conda-forge", "default"))`
-
-Try installing something:
-
-`rhumba::install("xtensor")`
-
-You might need to setup your `MAMBA_ROOT_PREFIX` if you've never done it before.
-You can do that by calling:
-
-`rhumba::set_root_prefix(/path/to/prefix)`
-
-Or use  micromamba shell init ... to initialize your shell, then restart.
 
 ## License
 
