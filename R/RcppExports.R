@@ -25,6 +25,10 @@ print_context <- function() {
     invisible(.Call(`_rhumba_print_context`))
 }
 
+list <- function() {
+    invisible(.Call(`_rhumba_list`))
+}
+
 install <- function(specs, create_env = FALSE) {
     invisible(.Call(`_rhumba_install`, specs, create_env))
 }
