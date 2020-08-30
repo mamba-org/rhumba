@@ -1,6 +1,6 @@
 # Rhumba 🐍
 
-¡Caramba! R bindings to Mamba!
+¡Caramba! R bindings for Mamba!
 
 In early stages of development, but pretty usable.
 
