@@ -1,3 +1,5 @@
+![rhumba header image](rhumba_header.png)
+
 # Rhumba 🐍
 
 ¡Caramba! R bindings for Mamba!
