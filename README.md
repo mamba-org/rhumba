@@ -4,6 +4,8 @@
 
 ¡Caramba! R bindings for micromamba!
 
+The R package manager that is blazingly fast ⚡. Powered by [mamba](https://github.com/QuantStack/mamba/).
+
 In early stages of development, but pretty usable.
 
 ## Installation
