@@ -2,7 +2,7 @@
 
 # Rhumba 🐍
 
-¡Caramba! R bindings for Mamba!
+¡Caramba! R bindings for micromamba!
 
 In early stages of development, but pretty usable.
 
