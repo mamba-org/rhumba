@@ -8,8 +8,9 @@ install:
       wget -qO- https://micromamba.snakepit.net/api/micromamba/osx-64/latest | tar -xvj bin/micromamba;
     fi
   - ./bin/micromamba shell init -s bash -p ~/micromamba
-  - ./bin/micromamba activate
-  - ./bin/micromamba install mamba -c conda-forge
+  - source ~/.bashrc
+  - micromamba activate
+  - micromamba install r-rcpp libmamba cpp-filesystem nlohmann_json -y -c conda-forge 
 
 language: r
 cache: packages
@@ -26,5 +27,7 @@ r_packages:
 script:
   - set +e
   - R CMD build .
-  - R CMD check rhumba_0.0.2.tar.gz --as-cran --no-manual
-  - cat /home/travis/build/marimeireles/caramba/rhumba.Rcheck/00install.out
+  - R CMD check ./rhumba_*.tar.gz --as-cran --no-manual || (
+      cat /home/travis/build/mamba-org/rhumba/rhumba.Rcheck/00install.out &&
+      cat /home/travis/build/mamba-org/rhumba/rhumba.Rcheck/00check.log
+    );
