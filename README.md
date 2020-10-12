@@ -50,6 +50,11 @@ And the softwares:
 - autoconf
 - automake
 - libtool
+- nlohmann_json
+- cpp-filesystem
+
+These can be downloaded with mamba:
+`mamba install -c conda-forge r-rcpp r-devtools nlohmann_json cpp-filesystem libtool`
 
 #### Windows, Mac and Linux:
 
@@ -76,7 +81,7 @@ Then:
 
 `devtools::install()`
 
-And you're ready to use Mamba!
+And you're ready to use Rhumba!
 
 ## License
 
