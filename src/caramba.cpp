@@ -6,10 +6,12 @@
 
 #include <Rcpp.h>
 
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <string>
 #include <vector>
+#include <unordered_set>
 
 #include <csignal>
 
@@ -427,6 +429,11 @@ void list()
 // [[Rcpp::export]]
 void install(const std::vector<std::string>& specs, bool create_env = false)
 {
+    std::unordered_set<std::string> channels_set(mamba::Context::instance().channels.begin(), mamba::Context::instance().channels.end());
+    channels_set.insert({"default", "conda-forge"});
+
+    mamba::Context::instance().channels.assign(channels_set.begin(), channels_set.end());
+
     set_network_options(mamba::Context::instance());
     install_specs(specs, create_env);
 }
