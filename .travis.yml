@@ -27,7 +27,8 @@ r_packages:
 script:
   - set +e
   - R CMD build .
-  - R CMD check ./rhumba_*.tar.gz --as-cran --no-manual || (
+  - R CMD check ./rhumba_*.tar.gz --as-cran || (
       cat /home/travis/build/mamba-org/rhumba/rhumba.Rcheck/00install.out &&
-      cat /home/travis/build/mamba-org/rhumba/rhumba.Rcheck/00check.log
+      cat /home/travis/build/mamba-org/rhumba/rhumba.Rcheck/00check.log &&
+      cat /home/travis/build/mamba-org/rhumba/rhumba.Rcheck/Rdlatex.log
     );
