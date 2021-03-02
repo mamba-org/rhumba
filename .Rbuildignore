@@ -1,3 +1,5 @@
+.appveyor.yml
+rhumba_header.png
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
