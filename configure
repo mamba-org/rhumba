@@ -1,4 +1,7 @@
 #!/bin/sh
 
+PKG_CXXFLAGS = -I../inst/include --std=c++14
+CXX_STD = CXX14
+
 # Run Rcpp compiler Attributes
 ${R_HOME}/bin${R_ARCH_BIN}/R -q -e "library('Rcpp');Rcpp::compileAttributes();"
