@@ -1,3 +1,5 @@
+R/RcppExports.R
+src/RcppExports.cpp
 .appveyor.yml
 rhumba_header.png
 ^.*\.Rproj$
