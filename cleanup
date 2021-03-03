@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# Remove automatically generated Makevars
-rm -f src/Makevars

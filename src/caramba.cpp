@@ -40,7 +40,7 @@ namespace fs = ghc::filesystem;
 namespace r = Rcpp;
 using namespace mamba;
 
-// [[Rcpp::plugins(cpp14)]]
+// [[Rcpp::plugins(cpp17)]]
 
 /* Beginning of Context */
 fs::path target_prefix = std::getenv("CONDA_PREFIX") ? std::getenv("CONDA_PREFIX") : "";;

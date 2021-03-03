@@ -1,9 +1,10 @@
 .Rproj.user
 .Rhistory
 .RData
-src/Makevars
 config.log
 config.status
 R/.RData
 R/.Rhistory
+R/RcppExports.R
+src/RcppExports.cpp
 autom4te.cache/
