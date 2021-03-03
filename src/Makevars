@@ -5,9 +5,10 @@
 # The full license is in the file LICENSE, distributed with this software.
 
 # Default make file
-PKG_CPPFLAGS=-std=c++17
+MAMBA_PREFIX=$(R_HOME)/../../Library
 
-PKG_LIBS= -lmamba
+PKG_CPPFLAGS=-std=c++17 -I$(MAMBA_PREFIX)/include
+PKG_LIBS=-L$(MAMBA_PREFIX)/lib -lmamba
 
 # Include all C++ files in src/:
 SOURCES=RcppExports.cpp caramba.cpp
