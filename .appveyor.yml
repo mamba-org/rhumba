@@ -1,0 +1,33 @@
+build: false
+
+platform:
+  - x64
+
+init:
+  # Download micromamba
+  - ps: Invoke-Webrequest -URI https://micro.mamba.pm/api/micromamba/win-64/latest -OutFile C:\projects\micromamba.tar.bz2
+  - ps: C:\PROGRA~1\7-Zip\7z.exe x C:\projects\micromamba.tar.bz2 -aoa -oC:\projects\
+  - ps: C:\PROGRA~1\7-Zip\7z.exe x C:\projects\micromamba.tar -ttar -aoa -oC:\projects\
+
+  # Invoke micromamba hook
+  - ps: $Env:MAMBA_ROOT_PREFIX="C:\projects\micromamba"
+  - ps: mkdir $Env:MAMBA_ROOT_PREFIX
+  - ps: C:\projects\Library\bin\micromamba.exe shell hook -s powershell | Out-String | Invoke-Expression
+  - ps: micromamba activate
+
+install:
+  # Install build dependencies
+  - ps: micromamba install r r-rcpp r-base r-devtools r-testthat -y -c conda-forge -c msys2
+  - ps: micromamba install m2w64-gcc m2w64-make m2w64-toolchain m2-libbz2 posix -y -c msys2
+  # Full build on x64 with msys64
+  - appveyor DownloadFile https://cran.r-project.org/bin/windows/Rtools/Rtools34.exe
+  - Rtools34.exe /VERYSILENT -NoNewWindow -Wait
+  # Build
+  - R CMD build --no-manual .
+
+build_script:
+  - R CMD check --as-cran --no-manual .\rhumba_*.tar.gz & exit 0
+  - ps: Get-Content -Path C:/projects/rhumba/rhumba.Rcheck/00install.out
+  - ps: Get-Content -Path C:/projects/rhumba/rhumba.Rcheck/00check.log
+  # - ps: Get-Content -Path C:/projects/rhumba/rhumba.Rcheck/Rdlatex.log
+  - R CMD INSTALL rhumba_*.tar.gz
