@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Run Rcpp compiler Attributes
+${R_HOME}/bin${R_ARCH_BIN}/R -q -e "library('Rcpp');Rcpp::compileAttributes();"
