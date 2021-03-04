@@ -273,7 +273,7 @@ void set_network_options(Context& ctx)
     }
 }
 
-void install_specs(const std::vector<std::string>& specs, bool create_env = false)
+int install_specs(const std::vector<std::string>& specs, bool create_env = false)
 {
     auto& ctx = Context::instance();
 
@@ -286,19 +286,19 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
         Rcpp::Rcout << "You have not set a $MAMBA_ROOT_PREFIX.\nEither set the MAMBA_ROOT_PREFIX \
         environment variable, or use `mamba::set_root_prefix` or use\n  micromamba shell init ... \
         \nto initialize your shell, then restart or source the contents of the shell init script.\n";
-        exit(1);
+        return 1;
     }
 
     if (ctx.target_prefix.empty())
     {
         Rcpp::Rcout << "No active target prefix.\n\nRun $ micromamba activate \
         <PATH_TO_MY_ENV>\nto activate an environment.\n";
-        exit(1);
+        return 1;
     }
     if (!fs::exists(ctx.target_prefix) && create_env == false)
     {
         Rcpp::Rcout << "Prefix does not exist\n";
-        exit(1);
+        return 1;
     }
 
     fs::path cache_dir = ctx.root_prefix / "pkgs" / "cache";
@@ -309,7 +309,7 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
     catch (...)
     {
         Rcpp::Rcout << "Could not create `pkgs/cache/` dirs" << std::endl;
-        exit(1);
+        return 1;
     }
 
     std::vector<std::string> channel_urls = calculate_channel_urls(ctx.channels);
@@ -365,7 +365,10 @@ void install_specs(const std::vector<std::string>& specs, bool create_env = fals
     for (auto& r : repos) { repo_ptrs.push_back(&r); }
 
     bool yes = trans.prompt(ctx.root_prefix / "pkgs", repo_ptrs);
-    if (!yes) exit(0);
+    if (!yes)
+    {
+        return 0;
+    }
 
     if (create_env && !Context::instance().dry_run)
     {
@@ -427,7 +430,7 @@ void list()
 }
 
 // [[Rcpp::export]]
-void install(const std::vector<std::string>& specs, bool create_env = false)
+int install(const std::vector<std::string>& specs, bool create_env = false)
 {
     std::unordered_set<std::string> channels_set(mamba::Context::instance().channels.begin(), mamba::Context::instance().channels.end());
     channels_set.insert({"default", "conda-forge"});
@@ -435,5 +438,5 @@ void install(const std::vector<std::string>& specs, bool create_env = false)
     mamba::Context::instance().channels.assign(channels_set.begin(), channels_set.end());
 
     set_network_options(mamba::Context::instance());
-    install_specs(specs, create_env);
+    return install_specs(specs, create_env);
 }
