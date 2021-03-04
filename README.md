@@ -52,17 +52,12 @@ And the softwares:
 - libtool
 - nlohmann_json
 - cpp-filesystem
+- libmamba
 
 These can be downloaded with mamba:
-`mamba install -c conda-forge r-rcpp r-devtools nlohmann_json cpp-filesystem libtool`
+`mamba install -c conda-forge r-rcpp r-devtools nlohmann_json cpp-filesystem libtool libmamba`
 
 #### Windows, Mac and Linux:
-
-Generate the `configure` file:
-
-```
-autoconf
-```
 
 Install packages:
 
@@ -82,6 +77,10 @@ Then:
 `devtools::install()`
 
 And you're ready to use Rhumba!
+
+## Testing
+
+You can run `devtools::check()` inside your R environment as a sanity check. More information about this command's output [here](https://r-pkgs.org/r-cmd-check.html).
 
 ## License
 
