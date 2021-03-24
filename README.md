@@ -2,23 +2,21 @@
 
 # Rhumba 🐍
 
-¡Caramba! R bindings for micromamba!
+¡Caramba! R bindings for libmamba!
 
-The R package manager that is blazingly fast ⚡. Powered by [mamba](https://github.com/QuantStack/mamba/).
+The R package manager that is blazingly fast ⚡. Powered by [mamba](https://github.com/mamba-org/mamba/).
 
 In early stages of development, but pretty usable.
 
 ## Installation
 
-With either mamba or conda:
+With either `mamba` or `conda`:
 
-`mamba install rhumba`
-
-`conda install rhumba`
+`mamba install rhumba` or `conda install rhumba`
 
 ## Use
 
-You can use Mamba as your new package manager.
+You can use `rhumba` as your new package manager!
 
 Set the channel you'd rather use:
 
@@ -28,13 +26,10 @@ Try installing something:
 
 `rhumba::install("xtensor")`
 
-You might need to setup your `MAMBA_ROOT_PREFIX` if you've never done it before.
-You can do that by calling:
+You might need to setup your `root_prefix` if you're running `R` and `rhumba` from a conda installation:
+`rhumba::set_config("root_prefix", "/path/to/prefix")`
 
-`rhumba::set_root_prefix(/path/to/prefix)`
-
-Or use  micromamba shell init ... to initialize your shell, then restart. Check 
-the use of micromamba [here](https://gist.github.com/wolfv/fe1ea521979973ab1d016d95a589dcde).
+It's already set if you're used `micromamba` to create your environment!
 
 ## Installation from source
 
@@ -56,6 +51,10 @@ And the softwares:
 
 These can be downloaded with mamba:
 `mamba install -c conda-forge r-rcpp r-devtools nlohmann_json cpp-filesystem libtool libmamba`
+
+On Windows, you also need to install the MinGW toolchain:
+
+`mamba install -c msys2 m2w64-gcc m2w64-make m2w64-toolchain m2-libbz2 posix`
 
 #### Windows, Mac and Linux:
 

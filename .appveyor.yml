@@ -17,7 +17,7 @@ init:
 
 install:
   # Install build dependencies
-  - ps: micromamba install r r-rcpp r-base r-devtools r-testthat -y -c conda-forge -c msys2
+  - ps: micromamba install r r-rcpp libmamba cpp-filesystem nlohmann_json -y -c conda-forge -c msys2
   - ps: micromamba install m2w64-gcc m2w64-make m2w64-toolchain m2-libbz2 posix -y -c msys2
   # Full build on x64 with msys64
   - appveyor DownloadFile https://cran.r-project.org/bin/windows/Rtools/Rtools34.exe
