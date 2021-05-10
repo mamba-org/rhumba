@@ -11,7 +11,7 @@ PKG_CPPFLAGS=-std=c++17 -I$(MAMBA_PREFIX)/include
 PKG_LIBS=-L$(MAMBA_PREFIX)/lib -L$(MAMBA_PREFIX)/bin -lmamba
 
 # Include all C++ files in src/:
-SOURCES=RcppExports.cpp caramba.cpp
+SOURCES=RcppExports.cpp rhumba.cpp
 
 # Obtain the object files
 OBJECTS=$(SOURCES:.cpp=.o) 
