@@ -2,11 +2,9 @@
 
 # Rhumba 🐍
 
-¡Caramba! R bindings for libmamba!
+Rhumba is a fast R package manager ⚡, powered by [mamba](https://github.com/mamba-org/mamba/).
 
-The R package manager that is blazingly fast ⚡. Powered by [mamba](https://github.com/mamba-org/mamba/).
-
-In early stages of development, but pretty usable.
+It is still in early stages of development.
 
 ## Installation
 
