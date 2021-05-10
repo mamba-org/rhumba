@@ -76,6 +76,11 @@ void set_prefix(const char* prefix)
     }
 }
 
+void hide_banner()
+{
+    mamba_set_config("show_banner", "false");
+}
+
 // [[Rcpp::export]]
 void print_config()
 {
@@ -92,6 +97,7 @@ void list(const char* regex = "", const char* prefix = "")
 // [[Rcpp::export]]
 void create(const std::vector<std::string>& specs, const char* prefix)
 {
+    hide_banner();
     set_specs(specs);
     set_prefix(prefix);
     mamba_create();
@@ -100,6 +106,7 @@ void create(const std::vector<std::string>& specs, const char* prefix)
 // [[Rcpp::export]]
 void install(const std::vector<std::string>& specs, const char* prefix = "")
 {
+    hide_banner();
     set_specs(specs);
     set_prefix(prefix);
     mamba_install();
@@ -108,6 +115,7 @@ void install(const std::vector<std::string>& specs, const char* prefix = "")
 // [[Rcpp::export]]
 void update(const std::vector<std::string>& specs, int update_all = 0, const char* prefix = "")
 {
+    hide_banner();
     set_specs(specs);
     set_prefix(prefix);
     mamba_update(update_all);
@@ -116,6 +124,7 @@ void update(const std::vector<std::string>& specs, int update_all = 0, const cha
 // [[Rcpp::export]]
 void remove(const std::vector<std::string>& specs, int remove_all = 0, const char* prefix = "")
 {
+    hide_banner();
     set_specs(specs);
     set_prefix(prefix);
     mamba_remove(remove_all);
