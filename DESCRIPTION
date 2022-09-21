@@ -10,10 +10,11 @@ Authors@R: c(person("Mariana Meireles",
             email = "wolf.vollprecht@quantstack.net",
             role = c("cre")))
 Maintainer: Mariana Meireles <mariana@psychonautgirl.space>
-Description: These are the R bidings from Mamba to R, allowing users to install compiled packages in their environments.
+Description: These are the R bindings from Mamba to R, allowing users to install compiled packages in their environments.
 URL: https://github.com/mamba-org/rhumba
 Imports: Rcpp
 LinkingTo: Rcpp
+Depends: R (>= 2.10)
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 LazyData: true
