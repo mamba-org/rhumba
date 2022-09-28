@@ -1,0 +1,50 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Create build environment
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: environment-dev.yml
+          environment-name: build_env
+          cache-env: true
+
+      - name: Install
+        shell: bash -l {0}
+        run: |
+          micromamba activate build_env
+          micromamba install r-rcpp libmamba cpp-filesystem nlohmann_json -y -c conda-forge
+
+      - name: Build and test
+        shell: bash -l {0}
+        run: |
+          micromamba activate build_env
+          set +e
+          R CMD build .
+          R CMD check --as-cran --no-manual ./rhumba_*.tar.gz
+
+      - name: Upload artifacts for ubuntu
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: log-files-ubuntu
+          path: /home/runner/work/rhumba/rhumba/rhumba.Rcheck/
+          retention-days: 1
+
+      - name: Upload artifacts for macos
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: log-files-macos
+          path: /Users/runner/work/rhumba/rhumba/rhumba.Rcheck/
+          retention-days: 1
