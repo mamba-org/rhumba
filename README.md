@@ -22,12 +22,14 @@ Set the channel you'd rather use:
 
 Try installing something:
 
-`rhumba::install("xtensor")`
+`rhumba::install("r-igraph")`
 
 You might need to setup your `root_prefix` if you're running `R` and `rhumba` from a conda installation:
 `rhumba::set_config("root_prefix", "/path/to/prefix")`
 
 It's already set if you're used `micromamba` to create your environment!
+
+![rhumba demo screenshot](rhumba_demo_screenshot.png)
 
 ## Installation from source
 
