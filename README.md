@@ -24,10 +24,19 @@ Try installing something:
 
 `rhumba::install("r-igraph")`
 
-You might need to setup your `root_prefix` if you're running `R` and `rhumba` from a conda installation:
-`rhumba::set_config("root_prefix", "/path/to/prefix")`
+#### Seting the root_prefix
 
-It's already set if you're used `micromamba` to create your environment!
+You might need to setup your `root_prefix`. You can do it inside your R environment using the following method:
+
+`rhumba::set_config("root_prefix", "root_path")`.
+
+The `root_prefix` is the place where your package manager and all it generates is stored. The place where the directories `envs` and `libs` live, for example. Here are some examples on where to find it:
+
+* If you've installed rhumba using [minirhumba](https://github.com/mamba-org/minirhumba) and have set `minirhumba` as your default software using the default options, then your `root_prefix` will be `/home/user_name/minirhumba` on Linux.
+
+* If you're using `conda`, or `miniconda` and used the default installation paths it would show up in `/home/user_name/conda`, `/home/user_name/miniconda`, respectively.
+
+* It's already set if you've used `micromamba` to create your environment!
 
 ![rhumba demo screenshot](rhumba_demo_screenshot.png)
 
